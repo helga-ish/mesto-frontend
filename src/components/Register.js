@@ -9,7 +9,7 @@ export default function Register() {
         title = 'Регистрация'
         buttonTitle= 'Зарегистрироваться'
         >
-            <h3 className="register__to-login">Уже зарегистрированы? Войти</h3>
+            <h3 className="register-to-login-form">Уже зарегистрированы? Войти</h3>
         </PageWithForm>
     )
 } 
