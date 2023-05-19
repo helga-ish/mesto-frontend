@@ -10,6 +10,7 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
 import EditProfilePopup from './EditProfilePopup.js';
 import EditAvatarPopup from './EditAvatarPopup.js';
 import AddPlacePopup from './AddPlacePopup.js';
+import Register from './Register.js';
 
 function App() {
     
@@ -178,6 +179,8 @@ function App() {
                         </div>
                     }
                     />
+                    <Route path="/sign-in" element={<Register />} />
+                    <Route path="/sign-up" element={<Register />} />
                 </Routes>
 
 
