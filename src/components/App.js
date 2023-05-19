@@ -1,4 +1,5 @@
 import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 import Header from './Header.js';
 import Main from './Main.js';
 import ImagePopup from './ImagePopup.js';
@@ -133,15 +134,20 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
             <div>
                 <Header />
-                <Main 
-                onEditProfile={handleEditProfileClick}
-                onAddPlace={handleAddPlaceClick}
-                onEditAvatar={handleEditAvatarClick}
-                onCardClick={handleCardClick}
-                onCardLike={handleCardLike}
-                onDeleteClick={handleDeleteClick}
-                cards = {cards}
-                />
+                <Routes>
+                    <Route path="/" element={
+                        <Main 
+                        onEditProfile={handleEditProfileClick}
+                        onAddPlace={handleAddPlaceClick}
+                        onEditAvatar={handleEditAvatarClick}
+                        onCardClick={handleCardClick}
+                        onCardLike={handleCardLike}
+                        onDeleteClick={handleDeleteClick}
+                        cards = {cards}
+                        />}
+                    />
+                </Routes>
+
 
                 <EditProfilePopup 
                 isOpen={isEditProfilePopupOpen}
