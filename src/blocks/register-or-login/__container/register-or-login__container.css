@@ -1,5 +1,6 @@
-.register__container {
+.register-or-login__container {
     display:flex;
     max-width: 358px;
     margin: auto;
+    margin-bottom: 112px;
 }
