@@ -1,4 +1,4 @@
-export default function PageWithForm({name, title, children, buttonTitle, onSubmit, onChange, }) {
+export default function PageWithForm({name, title, children, buttonTitle, onSubmit, onChange, formValueEmail, formValuePassword }) {
 
     return (
         <section className='register-or-login' id={name}>
@@ -9,25 +9,28 @@ export default function PageWithForm({name, title, children, buttonTitle, onSubm
                         <input
                         type='email'
                         className="form__field form__field_type_email form__field_type_white" 
-                        id="email-input" 
-                        name="inputEmail" 
+                        id="email" 
+                        name="email"
                         placeholder="Email" 
                         minLength="8" 
                         required 
-                        onChange={onChange}/>
+                        onChange={onChange}
+                        value={formValueEmail}
+                        />
 
                         <span className='form__field-error email-input-error'></span>
 
                         <input
                         type='password'
                         className="form__field form__field_type_password form__field_type_white" 
-                        id="password-input" 
-                        name="inputPassword"
+                        id="password" 
+                        name="password"
                         minLength="6" 
                         maxLength="16" 
                         placeholder="Пароль"  
                         required
-                        onChange={onChange}/>
+                        onChange={onChange}
+                        value={formValuePassword}/>
 
                         <span className='form__field-error password-input-error'></span>
 
