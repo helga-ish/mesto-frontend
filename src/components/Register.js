@@ -2,8 +2,20 @@ import React from "react";
 import PageWithForm from "./PageWithForm";
 import { Link, useNavigate } from "react-router-dom";
 import * as auth from '../utils/auth.js';
+import InfoTooltip from "./InfoTooltip";
 
 export default function Register() {
+
+    const [isInfoToolTipPopupOpen, setIsInfoToolTipPopupOpen] = React.useState(false);
+
+    function handleInfoToolTipClick() {
+        setIsInfoToolTipPopupOpen(true);
+    };
+    function closeInfoToolTipPopup() {
+        setIsInfoToolTipPopupOpen(false);
+    }
+
+    const [isSucceed, setIsSucceed] = React.useState(null);
 
     const [formValue, setFormValue] = React.useState({
         email: '',
@@ -21,12 +33,15 @@ export default function Register() {
       }
       const handleSubmit = (e) => {
         e.preventDefault();
-        if (formValue.password === formValue.confirmPassword){
-          auth.register(formValue.username, formValue.password, formValue.email).then((res) => {
-            navigate('/sign-in', {replace: true});
+        handleInfoToolTipClick();
+          auth.register(formValue.email, formValue.password).then((res) => {
+                // navigate('/sign-in', {replace: true});
+                setIsSucceed(true);
             }
-          );
-        }
+          )
+          .catch((err) => {
+            setIsSucceed(false);
+          })
       }
 
     return(
@@ -36,8 +51,15 @@ export default function Register() {
         buttonTitle= 'Зарегистрироваться'
         onChange={handleChange}
         onSubmit={handleSubmit}
+        formValueEmail={formValue.email}
+        formValuePassword={formValue.password}
         >
-            <p className="register-to-login-form">Уже зарегистрированы?<Link to='sign-in'>Войти</Link></p>
+            <p className="register-to-login">Уже зарегистрированы? <Link className="register-to-login_type_link" to='/sign-in'>Войти</Link></p>
+            <InfoTooltip
+            isSucceed={isSucceed}
+            isOpen={isInfoToolTipPopupOpen}
+            onClose={closeInfoToolTipPopup}/>
         </PageWithForm>
+
     )
 } 
