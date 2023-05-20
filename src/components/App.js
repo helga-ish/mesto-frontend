@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Header from './Header.js';
 import Main from './Main.js';
 import ImagePopup from './ImagePopup.js';
@@ -12,6 +12,7 @@ import EditAvatarPopup from './EditAvatarPopup.js';
 import AddPlacePopup from './AddPlacePopup.js';
 import Register from './Register.js';
 import Login from './Login.js';
+import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
     
@@ -22,8 +23,9 @@ function App() {
     const [selectedCard, setSelectedCard] = React.useState({name:'', link:''});
     const [currentUser, setCurrentUser] = React.useState('');
     const [cards, setCards] = React.useState([]);
-    const [loggedIn, setLoggedIn] = React.useState(false);
-    const [signedUp, setSignedUp] = React.useState(false);
+    const [loggedIn, setLoggedIn] = React.useState(true);
+    // const [signedUp, setSignedUp] = React.useState(false);
+
 
     React.useEffect(() => {
         api.getProfileUserInfo()
@@ -139,54 +141,48 @@ function App() {
             <div>
                 <Header />
                 <Routes>
-                    <Route path="/" element={loggedIn ? <Navigate to="/" replace /> : <Navigate to="/sign-in" replace />} />
-                    <Route path="/" element={signedUp ? <Navigate to="/sign-in" replace /> : <Navigate to="/sign-up" replace />} />
-                    <Route path="/" element={
-                        <div>
-                            <Main 
-                            onEditProfile={handleEditProfileClick}
-                            onAddPlace={handleAddPlaceClick}
-                            onEditAvatar={handleEditAvatarClick}
-                            onCardClick={handleCardClick}
-                            onCardLike={handleCardLike}
-                            onDeleteClick={handleDeleteClick}
-                            cards = {cards}
-                            />
+                    <Route element={<ProtectedRoute exact path="/" loggedIn={loggedIn} component={Main}/>}>
+                        <Route path='/' element={<Main 
+                                                    onEditProfile={handleEditProfileClick}
+                                                    onAddPlace={handleAddPlaceClick}
+                                                    onEditAvatar={handleEditAvatarClick}
+                                                    onCardClick={handleCardClick}
+                                                    onCardLike={handleCardLike}
+                                                    onDeleteClick={handleDeleteClick}
+                                                    cards = {cards}
+                                                />} 
+                        />
+                    </Route>
+                    <Route   path='/sign-in' element={<Login />} />
+                    <Route   path='/sign-up' element={<Register />} />
+                    {/* <Route path="*" element={<div>Тю-тю</div>}/> */}
+                </Routes>
 
-                            <EditProfilePopup 
+                <EditProfilePopup 
                             isOpen={isEditProfilePopupOpen}
                             onClose={closeAllPopups}
                             onUpdateUser={handleUpdateUser}
                             />
-
+            
                             <EditAvatarPopup
                             isOpen={isEditAvatarPopupOpen}
                             onClose={closeAllPopups}
                             onUpdateAvatar={handleUpdateAvatar}
                             />
-
+            
                             <AddPlacePopup
                             isOpen={isAddPlacePopupOpen}
                             onClose={closeAllPopups}
                             onAddPlace={handleAddPlaceSubmit}
                             />
-
+            
                             <ImagePopup 
                             card = { selectedCard }
                             onClose = {closeAllPopups}
                             />
 
                             <Footer />
-                        </div>
-                    }
-                    />
-                    <Route path="/sign-in" element={<Login />} />
-                    <Route path="/sign-up" element={<Register />} />
-                </Routes>
 
-
-                
-                
             </div>
     </CurrentUserContext.Provider>
   );
