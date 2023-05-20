@@ -1,4 +1,4 @@
-export default function PageWithForm({name, title, children, buttonTitle, onSubmit}) {
+export default function PageWithForm({name, title, children, buttonTitle, onSubmit, onChange, }) {
 
     return (
         <section className='register-or-login' id={name}>
@@ -13,7 +13,8 @@ export default function PageWithForm({name, title, children, buttonTitle, onSubm
                         name="inputEmail" 
                         placeholder="Email" 
                         minLength="8" 
-                        required />
+                        required 
+                        onChange={onChange}/>
 
                         <span className='form__field-error email-input-error'></span>
 
@@ -24,12 +25,14 @@ export default function PageWithForm({name, title, children, buttonTitle, onSubm
                         name="inputPassword"
                         minLength="6" 
                         maxLength="16" 
-                        placeholder="Пароль"  />
+                        placeholder="Пароль"  
+                        required
+                        onChange={onChange}/>
 
                         <span className='form__field-error password-input-error'></span>
 
                     </fieldset>
-                    <button type="submit" className="form-button form-button_type_white">{ buttonTitle }</button>
+                    <button type="submit" className="form-button form-button_type_white" onSubmit={onSubmit}>{ buttonTitle }</button>
                     {children}
                 </form>
             </div>
