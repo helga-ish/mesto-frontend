@@ -84,6 +84,7 @@ class Api {
             return this._promiseResponse(res);
         });
     }
+
 }
 
 const api = new Api({
