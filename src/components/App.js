@@ -20,12 +20,16 @@ function App() {
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
     const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
+
     const [selectedCard, setSelectedCard] = React.useState({name:'', link:''});
     const [currentUser, setCurrentUser] = React.useState('');
     const [cards, setCards] = React.useState([]);
-    const [loggedIn, setLoggedIn] = React.useState(true);
+    const [loggedIn, setLoggedIn] = React.useState(false);
     // const [signedUp, setSignedUp] = React.useState(false);
 
+    const handleLogin = () => {
+        setLoggedIn(true);
+      }
 
     React.useEffect(() => {
         api.getProfileUserInfo()
@@ -153,9 +157,8 @@ function App() {
                                                 />} 
                         />
                     </Route>
-                    <Route   path='/sign-in' element={<Login />} />
+                    <Route   path='/sign-in' element={<Login handleLogin={handleLogin}/>} />
                     <Route   path='/sign-up' element={<Register />} />
-                    {/* <Route path="*" element={<div>Тю-тю</div>}/> */}
                 </Routes>
 
                 <EditProfilePopup 
