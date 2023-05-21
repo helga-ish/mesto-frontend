@@ -2,6 +2,8 @@ import React from "react";
 import PageWithForm from "./PageWithForm";
 import { useNavigate } from "react-router-dom";
 import * as auth from '../utils/auth.js';
+import Header from "./Header";
+import { Link } from "react-router-dom";
 
 export default function Login({handleLogin}) {
     const [formValue, setFormValue] = React.useState({
@@ -34,6 +36,10 @@ export default function Login({handleLogin}) {
     
 
     return(
+      <div>
+        <Header>
+          <Link className='header__link' to="/sign-up">Зарегистрироваться</Link>
+        </Header>
         <PageWithForm
         name = 'login'
         title = 'Вход'
@@ -43,5 +49,6 @@ export default function Login({handleLogin}) {
         formValueEmail={formValue.email}
         formValuePassword={formValue.password}
         />
+        </div>
     )
 } 
