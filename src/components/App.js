@@ -25,7 +25,6 @@ function App() {
     const [currentUser, setCurrentUser] = React.useState('');
     const [cards, setCards] = React.useState([]);
     const [loggedIn, setLoggedIn] = React.useState(false);
-    // const [signedUp, setSignedUp] = React.useState(false);
 
     const handleLogin = () => {
         setLoggedIn(true);
@@ -145,8 +144,8 @@ function App() {
             <div>
                 <Header />
                 <Routes>
-                    <Route element={<ProtectedRoute exact path="/" loggedIn={loggedIn} component={Main}/>}>
-                        <Route path='/' element={<Main 
+                    <Route element={<ProtectedRoute loggedIn={loggedIn} />}>
+                        <Route path="/" element={<Main 
                                                     onEditProfile={handleEditProfileClick}
                                                     onAddPlace={handleAddPlaceClick}
                                                     onEditAvatar={handleEditAvatarClick}
@@ -157,8 +156,8 @@ function App() {
                                                 />} 
                         />
                     </Route>
-                    <Route   path='/sign-in' element={<Login handleLogin={handleLogin}/>} />
-                    <Route   path='/sign-up' element={<Register />} />
+                    <Route   path="/sign-in" element={<Login handleLogin={handleLogin}/>} />
+                    <Route   path="/sign-up" element={<Register />} />
                 </Routes>
 
                 <EditProfilePopup 
