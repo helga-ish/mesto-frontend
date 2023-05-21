@@ -25,13 +25,9 @@ export default function Login({handleLogin}) {
           return;
         }
         auth.authorize(formValue.email, formValue.password)
-          .then((data) => {
-          if (data.jwt) {
-                  setFormValue({email: '', password: ''});
+          .then((res) => {
           handleLogin();
-          navigate('/', {replace: true})
-          }
-    
+          navigate("/", {replace: true})
           })
           .catch(err => console.log(err));
       }
