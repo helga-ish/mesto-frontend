@@ -142,6 +142,7 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
             <div>
+            {loggedIn ? (<div>loggedIn</div>) : (<div>notLoggedIn</div>)}
                 <Header />
                 <Routes>
                     <Route element={<ProtectedRoute loggedIn={loggedIn} />}>
@@ -159,6 +160,7 @@ function App() {
                     <Route   path="/sign-in" element={<Login handleLogin={handleLogin}/>} />
                     <Route   path="/sign-up" element={<Register />} />
                 </Routes>
+
 
                 <EditProfilePopup 
                             isOpen={isEditProfilePopupOpen}
