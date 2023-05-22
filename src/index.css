@@ -7,6 +7,7 @@
 @import url(./blocks/header/header.css);
 @import url(./blocks/header/__link/header__link.css);
 @import url(./blocks/header/__email/header__email.css);
+@import url(./blocks/header/__link/_type/header__link_type_signout.css);
 @import url(./blocks/logo/logo.css);
 
 @import url(./blocks/popup/popup.css);
