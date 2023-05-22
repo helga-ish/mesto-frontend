@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate, useHistory } from 'react-router-dom';
 import Header from './Header.js';
 import Main from './Main.js';
 import ImagePopup from './ImagePopup.js';
@@ -29,6 +29,11 @@ function App() {
     const [loggedIn, setLoggedIn] = React.useState(false);
     const [email, setEmail] = React.useState('');
     const navigate = useNavigate();
+
+    function handleSignOut() {
+        localStorage.removeItem('token');
+        navigate('sign-in', {replace: true});
+    }
 
     const getEmail = () => {
         if (localStorage.getItem('token')) {
@@ -162,8 +167,7 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
             <div>
-            {loggedIn ? (<div>loggedIn</div>) : (<div>notLoggedIn</div>)}
-                <Header  loggedIn={loggedIn} email={email}/>
+                <Header  loggedIn={loggedIn} email={email} onClick={handleSignOut}/>
                 <Routes>
                     <Route element={<ProtectedRoute loggedIn={loggedIn} />}>
                         <Route path="/" element={<Main 
