@@ -30,10 +30,6 @@ function App() {
     const [email, setEmail] = React.useState('');
     const navigate = useNavigate();
 
-    React.useEffect (() => {
-        getEmail();
-    }, [])
-
     const getEmail = () => {
         if (localStorage.getItem('token')) {
             const token = localStorage.getItem('token');
@@ -42,13 +38,13 @@ function App() {
                     setEmail(data.email);
                     navigate('/', {replace: true})
             });
-        }
-        
-
-            
+        }   
     }
 
 
+    React.useEffect (() => {
+        getEmail();
+    }, [getEmail])
 
     const handleLogin = () => {
         setLoggedIn(true);
