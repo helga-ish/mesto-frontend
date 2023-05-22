@@ -1,5 +1,7 @@
 .header__link {
     text-decoration: none;
+    background-color: black;
+    border: none;
     color: white;
     font-weight: 400;
     font-size: 18px;
@@ -7,6 +9,7 @@
     text-align: right;
     transition: opacity .4s;
     margin-left: 24px;
+    cursor: pointer;
 }
 
 .header__link:hover {
