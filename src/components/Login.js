@@ -2,8 +2,7 @@ import React from "react";
 import PageWithForm from "./PageWithForm";
 import { useNavigate } from "react-router-dom";
 import * as auth from '../utils/auth.js';
-import Header from "./Header";
-import { Link } from "react-router-dom";
+
 
 export default function Login({handleLogin}) {
     const [formValue, setFormValue] = React.useState({
@@ -27,7 +26,7 @@ export default function Login({handleLogin}) {
           return;
         }
         auth.authorize(formValue.email, formValue.password)
-          .then((res) => {
+          .then((data) => {
           handleLogin();
           navigate("/", {replace: true})
           })
@@ -37,9 +36,6 @@ export default function Login({handleLogin}) {
 
     return(
       <div>
-        <Header>
-          <Link className='header__link' to="/sign-up">Зарегистрироваться</Link>
-        </Header>
         <PageWithForm
         name = 'login'
         title = 'Вход'
