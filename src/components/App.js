@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import Header from './Header.js';
 import Main from './Main.js';
 import ImagePopup from './ImagePopup.js';
@@ -13,6 +13,8 @@ import AddPlacePopup from './AddPlacePopup.js';
 import Register from './Register.js';
 import Login from './Login.js';
 import ProtectedRoute from "./ProtectedRoute";
+import * as auth from '../utils/auth.js';
+
 
 function App() {
     
@@ -25,6 +27,28 @@ function App() {
     const [currentUser, setCurrentUser] = React.useState('');
     const [cards, setCards] = React.useState([]);
     const [loggedIn, setLoggedIn] = React.useState(false);
+    const [email, setEmail] = React.useState('');
+    const navigate = useNavigate();
+
+    React.useEffect (() => {
+        getEmail();
+    }, [])
+
+    const getEmail = () => {
+        if (localStorage.getItem('token')) {
+            const token = localStorage.getItem('token');
+            auth.getEmail(token).then(({data}) => {
+                    handleLogin();
+                    setEmail(data.email);
+                    navigate('/', {replace: true})
+            });
+        }
+        
+
+            
+    }
+
+
 
     const handleLogin = () => {
         setLoggedIn(true);
@@ -143,7 +167,7 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
             <div>
             {loggedIn ? (<div>loggedIn</div>) : (<div>notLoggedIn</div>)}
-                <Header />
+                <Header  loggedIn={loggedIn} email={email}/>
                 <Routes>
                     <Route element={<ProtectedRoute loggedIn={loggedIn} />}>
                         <Route path="/" element={<Main 
