@@ -2,7 +2,7 @@ import logo from '../images/logo.svg';
 import { Link, useLocation } from 'react-router-dom';
 import React from 'react';
 
-function Header({loggedIn, email}) {
+function Header({loggedIn, email, onClick}) {
 
 
 const location = useLocation();
@@ -18,7 +18,7 @@ const location = useLocation();
             loggedIn ? (
                 <div>
                     <p className='header__email'>{ email }</p>
-                    <Link className='header__link header__link_type_signout' to="/">Выйти</Link>
+                    <button className='header__link header__link_type_signout' onClick={onClick}>Выйти</button>
                 </div>
             ) : (
                     <Link className='header__link' to="/sign-up">Зарегистрироваться</Link>
