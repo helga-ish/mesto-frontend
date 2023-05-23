@@ -25,16 +25,16 @@ export default function Register({isInfoToolTipPopupOpen, isSucceed, handleInfoT
 
       const handleSubmit = (e) => {
         e.preventDefault();
-          auth.register(formValue.email, formValue.password).then((res) => {
-                if (res.data) {
+          auth.register(formValue.email, formValue.password)
+                .then((res) => {
                   handleInfoToolTipClick();
                   handleSucceed();
-                } else if (res.error) {
+                })
+                .catch((err) => {
+                  console.log(err);
                   handleNotSucceed();
                   handleInfoToolTipClick();
-                }
-                
-            })
+                })
       }
 
     return(
