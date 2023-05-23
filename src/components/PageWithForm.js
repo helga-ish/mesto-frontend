@@ -35,7 +35,7 @@ export default function PageWithForm({name, title, children, buttonTitle, onSubm
                         <span className='form__field-error password-input-error'></span>
 
                     </fieldset>
-                    <button type="submit" className="form-button form-button_type_white" onSubmit={onSubmit}>{ buttonTitle }</button>
+                    <button type="submit" className="form-button form-button_type_white">{ buttonTitle }</button>
                     {children}
                 </form>
             </div>
