@@ -26,38 +26,39 @@ function App() {
     const [selectedCard, setSelectedCard] = React.useState({name:'', link:''});
     const [currentUser, setCurrentUser] = React.useState('');
     const [cards, setCards] = React.useState([]);
-    const [loggedIn, setLoggedIn] = React.useState(false);
-    const [email, setEmail] = React.useState('');
+
+    
+
+    // succeed popup related
+
     const [isInfoToolTipPopupOpen, setIsInfoToolTipPopupOpen] = React.useState(false);
     const [isSucceed, setIsSucceed] = React.useState(null);
-
     const navigate = useNavigate();
-
     function handleInfoToolTipClick() {
         setIsInfoToolTipPopupOpen(true);
     };
     function closeInfoToolTipPopup() {
         setIsInfoToolTipPopupOpen(false);
     }
-
     function onCloseAndNavigate() {
       setIsInfoToolTipPopupOpen(false);
       navigate('/sign-in', {replace: true});
     }
-
     function handleSucceed() {
         setIsSucceed(true);
     }
-
     function handleNotSucceed() {
         setIsSucceed(false);
     }
-
     function handleSignOut() {
         localStorage.removeItem('token');
         setLoggedIn(false);
         navigate('sign-in', {replace: true});
     }
+
+    // setting email in header related
+
+    const [email, setEmail] = React.useState('');
 
     React.useEffect (() => {
         getEmail();
@@ -70,13 +71,20 @@ function App() {
                     handleLogin();
                     setEmail(data.email);
                     navigate('/', {replace: true})
-            });
+            })
+            .catch((err) => console.log(err));
         }   
     }
+
+    // loggedIn state related
+
+    const [loggedIn, setLoggedIn] = React.useState(false);
 
     const handleLogin = () => {
         setLoggedIn(true);
       }
+
+    // getting info for main page
 
     React.useEffect(() => {
         api.getProfileUserInfo()
