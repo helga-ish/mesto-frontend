@@ -11,6 +11,8 @@
     .profile__avatar {
         display: flex;
         align-self: center;
-        margin-bottom: 26px;
+        top: 0;
+        width: 140px;
+        height: 140px;
     }
 }

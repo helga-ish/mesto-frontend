@@ -1,12 +1,10 @@
 .header__link {
     text-decoration: none;
-    background-color: black;
-    border: none;
     color: white;
     font-weight: 400;
     font-size: 18px;
     line-height: 22px;
-    text-align: right;
+    /* text-align: right; */
     transition: opacity .4s;
     margin-left: 24px;
     cursor: pointer;
@@ -14,4 +12,10 @@
 
 .header__link:hover {
     opacity: .6;
+}
+
+@media screen and (max-width: 700px) {
+    .header__link {
+        margin: auto;
+    }
 }

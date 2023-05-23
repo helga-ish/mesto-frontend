@@ -5,11 +5,11 @@
     margin: 45px auto 39px auto;
     border-bottom: 1px solid rgba(84, 84, 84, .7);
     justify-content: space-between;
+    flex-flow: row-reverse ;
 }
 
 @media screen and (max-width: 920px) {
     .header {
-        flex-direction: column;
         margin-left: 27px;
         margin-right: 27px;
     }
@@ -17,7 +17,7 @@
 
 @media screen and (max-width: 700px) {
     .header {
-        border-top: 1px solid rgba(84, 84, 84, .7);
+        /* flex-direction: column; */
         width: 100%;
         margin-top: 28px;
         margin-left: 0;
