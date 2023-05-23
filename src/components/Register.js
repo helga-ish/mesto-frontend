@@ -6,7 +6,7 @@ import InfoTooltip from "./InfoTooltip";
 
 export default function Register() {
 
-    const [isInfoToolTipPopupOpen, setIsInfoToolTipPopupOpen] = React.useState(null);
+    const [isInfoToolTipPopupOpen, setIsInfoToolTipPopupOpen] = React.useState(false);
 
     function handleInfoToolTipClick() {
         setIsInfoToolTipPopupOpen(true);
@@ -15,8 +15,8 @@ export default function Register() {
         setIsInfoToolTipPopupOpen(false);
     }
 
-    const [isSucceed, setIsSucceed] = React.useState(false);
-
+    const [isSucceed, setIsSucceed] = React.useState(null);
+    
     const [formValue, setFormValue] = React.useState({
         email: '',
         password: '',
@@ -34,13 +34,18 @@ export default function Register() {
 
       const handleSubmit = (e) => {
         e.preventDefault();
-        handleInfoToolTipClick();
-          auth.register(formValue.email, formValue.password).then((response) => {
-                if (!response.error) {
+        
+          auth.register(formValue.email, formValue.password).then((res) => {
+            
+            console.log(res);
+                if (res.data) {
                   setIsSucceed(true);
+                  handleInfoToolTipClick();
                   navigate('/sign-in', {replace: true});
-                } else (setIsSucceed(false))
-                
+                } else if (res.error) {
+                  setIsSucceed(false);
+                  handleInfoToolTipClick();
+                }
             })
       }
 

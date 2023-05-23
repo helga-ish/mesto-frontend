@@ -11,9 +11,9 @@ export const register = (email, password) => {
   .then((response) => {
     return response.json();
   })
-  .then((res) => {
-    return res;
-  })
+  // .then((res) => {
+  //   return res;
+  // })
   .catch((err) => console.log(err));
 };
 
