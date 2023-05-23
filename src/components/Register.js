@@ -8,11 +8,18 @@ export default function Register() {
 
     const [isInfoToolTipPopupOpen, setIsInfoToolTipPopupOpen] = React.useState(false);
 
+    const navigate = useNavigate();
+
     function handleInfoToolTipClick() {
         setIsInfoToolTipPopupOpen(true);
     };
     function closeInfoToolTipPopup() {
         setIsInfoToolTipPopupOpen(false);
+    }
+
+    function onCloseAndNavigate() {
+      setIsInfoToolTipPopupOpen(false);
+      navigate('/sign-in', {replace: true});
     }
 
     const [isSucceed, setIsSucceed] = React.useState(null);
@@ -21,7 +28,7 @@ export default function Register() {
         email: '',
         password: '',
       })
-      const navigate = useNavigate();
+
     
       const handleChange = (e) => {
         const {name, value} = e.target;
@@ -34,18 +41,15 @@ export default function Register() {
 
       const handleSubmit = (e) => {
         e.preventDefault();
-        
           auth.register(formValue.email, formValue.password).then((res) => {
-            
-            console.log(res);
                 if (res.data) {
-                  setIsSucceed(true);
                   handleInfoToolTipClick();
-                  navigate('/sign-in', {replace: true});
+                  setIsSucceed(true);
                 } else if (res.error) {
                   setIsSucceed(false);
                   handleInfoToolTipClick();
                 }
+                
             })
       }
 
@@ -63,7 +67,8 @@ export default function Register() {
             <InfoTooltip
             isSucceed={isSucceed}
             isOpen={isInfoToolTipPopupOpen}
-            onClose={closeInfoToolTipPopup}/>
+            onClose={closeInfoToolTipPopup}
+            onCloseAndNavigate={onCloseAndNavigate}/>
         </PageWithForm>
 
     )
