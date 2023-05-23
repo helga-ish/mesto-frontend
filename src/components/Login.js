@@ -33,12 +33,13 @@ export default function Login({handleLogin, getEmail, isInfoToolTipPopupOpen, is
               handleLogin();
               navigate("/", {replace: true})
               getEmail();
-            } else if (data.message) {
-              handleInfoToolTipClick();
-              handleNotSucceed();
             }
           })
-          .catch(err => console.log(err));
+          .catch((err) => {
+            console.log(err)
+            handleInfoToolTipClick();
+            handleNotSucceed();
+          });
       }
     
 
