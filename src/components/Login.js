@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import * as auth from '../utils/auth.js';
 
 
-export default function Login({handleLogin}) {
+export default function Login({handleLogin, getEmail}) {
     const [formValue, setFormValue] = React.useState({
         email: '',
         password: ''
@@ -29,6 +29,7 @@ export default function Login({handleLogin}) {
           .then((data) => {
           handleLogin();
           navigate("/", {replace: true})
+          getEmail();
           })
           .catch(err => console.log(err));
       }

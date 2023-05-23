@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, useNavigate, useHistory } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import Header from './Header.js';
 import Main from './Main.js';
 import ImagePopup from './ImagePopup.js';
@@ -32,8 +32,13 @@ function App() {
 
     function handleSignOut() {
         localStorage.removeItem('token');
+        setLoggedIn(false);
         navigate('sign-in', {replace: true});
     }
+
+    React.useEffect (() => {
+        getEmail();
+    }, [])
 
     const getEmail = () => {
         if (localStorage.getItem('token')) {
@@ -45,11 +50,6 @@ function App() {
             });
         }   
     }
-
-
-    React.useEffect (() => {
-        getEmail();
-    }, [getEmail])
 
     const handleLogin = () => {
         setLoggedIn(true);
@@ -167,6 +167,7 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
             <div>
+                {/* {loggedIn ? <div>LoggedIn</div> : <div>NotLoggedIn</div>} */}
                 <Header  loggedIn={loggedIn} email={email} onClick={handleSignOut}/>
                 <Routes>
                     <Route element={<ProtectedRoute loggedIn={loggedIn} />}>
@@ -181,7 +182,7 @@ function App() {
                                                 />} 
                         />
                     </Route>
-                    <Route   path="/sign-in" element={<Login handleLogin={handleLogin}/>} />
+                    <Route   path="/sign-in" element={<Login handleLogin={handleLogin} getEmail={getEmail}/>} />
                     <Route   path="/sign-up" element={<Register />} />
                 </Routes>
 
