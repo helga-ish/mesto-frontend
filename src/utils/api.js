@@ -4,7 +4,7 @@ class Api {
         this._headers = config.headers;
     }
 
-    _promiseResponse(res) {
+    _checkResponse(res) {
         if (res.ok) {
             return res.json();
         }
@@ -16,7 +16,7 @@ class Api {
         method: 'GET',
         headers: this._headers,
     }).then((res) => {
-        return this._promiseResponse(res);
+        return this._checkResponse(res);
     });
     }
 
@@ -25,7 +25,7 @@ class Api {
             method: 'GET',
             headers: this._headers,
         }).then((res) => {
-            return this._promiseResponse(res);
+            return this._checkResponse(res);
         });
     }
 
@@ -38,7 +38,7 @@ class Api {
                 about: data.about
             })
         }).then((res) => {
-            return this._promiseResponse(res);
+            return this._checkResponse(res);
         });
     }
 
@@ -50,7 +50,7 @@ class Api {
                 avatar: data.avatar
             })
         }).then((res) => {
-            return this._promiseResponse(res);
+            return this._checkResponse(res);
         });
     }
 
@@ -63,7 +63,7 @@ class Api {
                 link: data.link
             })
         }).then((res) => {
-            return this._promiseResponse(res);
+            return this._checkResponse(res);
         });
     }
 
@@ -72,7 +72,7 @@ class Api {
             method: 'DELETE',
             headers: this._headers,
         }).then((res) => {
-            return this._promiseResponse(res);
+            return this._checkResponse(res);
         });
     }
 
@@ -81,7 +81,7 @@ class Api {
             method: like ? 'PUT' : 'DELETE',
             headers: this._headers,
         }).then((res) => {
-            return this._promiseResponse(res);
+            return this._checkResponse(res);
         });
     }
 
