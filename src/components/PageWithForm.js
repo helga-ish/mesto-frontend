@@ -1,8 +1,8 @@
 export default function PageWithForm({name, title, children, buttonTitle, onSubmit, onChange, formValueEmail, formValuePassword }) {
 
     return (
-        <section className='register-or-login' id={name}>
-            <div className='register-or-login__container'>
+        <section className='authentification' id={name}>
+            <div className='authentification__container'>
                 <form className="form" name={`${name}Form`} onSubmit={ onSubmit }>
                     <h2 className="form__heading form__heading_type_white">{`${title}`}</h2>
                     <fieldset className="form__fields">
