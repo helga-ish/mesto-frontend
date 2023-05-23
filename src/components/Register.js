@@ -1,28 +1,12 @@
 import React from "react";
 import PageWithForm from "./PageWithForm";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import * as auth from '../utils/auth.js';
 import InfoTooltip from "./InfoTooltip";
 
-export default function Register() {
+export default function Register({isInfoToolTipPopupOpen, isSucceed, handleInfoToolTipClick, closeInfoToolTipPopup, onCloseAndNavigate, handleSucceed, handleNotSucceed}) {
 
-    const [isInfoToolTipPopupOpen, setIsInfoToolTipPopupOpen] = React.useState(false);
 
-    const navigate = useNavigate();
-
-    function handleInfoToolTipClick() {
-        setIsInfoToolTipPopupOpen(true);
-    };
-    function closeInfoToolTipPopup() {
-        setIsInfoToolTipPopupOpen(false);
-    }
-
-    function onCloseAndNavigate() {
-      setIsInfoToolTipPopupOpen(false);
-      navigate('/sign-in', {replace: true});
-    }
-
-    const [isSucceed, setIsSucceed] = React.useState(null);
     
     const [formValue, setFormValue] = React.useState({
         email: '',
@@ -44,9 +28,9 @@ export default function Register() {
           auth.register(formValue.email, formValue.password).then((res) => {
                 if (res.data) {
                   handleInfoToolTipClick();
-                  setIsSucceed(true);
+                  handleSucceed();
                 } else if (res.error) {
-                  setIsSucceed(false);
+                  handleNotSucceed();
                   handleInfoToolTipClick();
                 }
                 

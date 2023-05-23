@@ -28,7 +28,30 @@ function App() {
     const [cards, setCards] = React.useState([]);
     const [loggedIn, setLoggedIn] = React.useState(false);
     const [email, setEmail] = React.useState('');
+    const [isInfoToolTipPopupOpen, setIsInfoToolTipPopupOpen] = React.useState(false);
+    const [isSucceed, setIsSucceed] = React.useState(null);
+
     const navigate = useNavigate();
+
+    function handleInfoToolTipClick() {
+        setIsInfoToolTipPopupOpen(true);
+    };
+    function closeInfoToolTipPopup() {
+        setIsInfoToolTipPopupOpen(false);
+    }
+
+    function onCloseAndNavigate() {
+      setIsInfoToolTipPopupOpen(false);
+      navigate('/sign-in', {replace: true});
+    }
+
+    function handleSucceed() {
+        setIsSucceed(true);
+    }
+
+    function handleNotSucceed() {
+        setIsSucceed(false);
+    }
 
     function handleSignOut() {
         localStorage.removeItem('token');
@@ -183,7 +206,15 @@ function App() {
                         />
                     </Route>
                     <Route   path="/sign-in" element={<Login handleLogin={handleLogin} getEmail={getEmail}/>} />
-                    <Route   path="/sign-up" element={<Register />} />
+                    <Route   path="/sign-up" element={<Register
+                        isInfoToolTipPopupOpen={isInfoToolTipPopupOpen}
+                        isSucceed={isSucceed}
+                        handleInfoToolTipClick={handleInfoToolTipClick}
+                        closeInfoToolTipPopup={closeInfoToolTipPopup}
+                        onCloseAndNavigate={onCloseAndNavigate}
+                        handleSucceed={handleSucceed}
+                        handleNotSucceed={handleNotSucceed}
+                    />} />
                 </Routes>
 
 
