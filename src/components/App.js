@@ -117,9 +117,9 @@ function App() {
     function handleCardLike(card) {
         const isLiked = card.likes.some(i => i._id === currentUser._id);
         
-        api.changeLikeStatus(card.id, !isLiked)
+        api.changeLikeStatus(card._id, !isLiked)
         .then((newCard) => {
-            setCards((state) => state.map((c) => c.id === card.id ? newCard : c));
+            setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
         })
         .catch((error) => {
             console.error(`Ошибка загрузки данных с сервера: ${error}`);
