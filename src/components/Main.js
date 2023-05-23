@@ -27,7 +27,7 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick, onCardLike
                 <ul className="gallery__list">
                     {cards.map((item) => (
                         <Card
-                        key={ item.id }
+                        key={ item._id }
                         card={ item }
                         onCardClick = {onCardClick}
                         onCardLike = {onCardLike}

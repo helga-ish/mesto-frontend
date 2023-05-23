@@ -101,7 +101,7 @@ function App() {
         .then((data) => {
             setCards(
                 data.map((item) => ({
-                    id: item._id,
+                    _id: item._id,
                     name: item.name,
                     link: item.link,
                     likes: item.likes,
@@ -127,10 +127,10 @@ function App() {
     }
 
     function handleDeleteClick(card) {
-        api.deleteCard(card.id)
+        api.deleteCard(card._id)
         .then(() => {
             setCards((state) => state.filter(function(c) {
-                return c.id !== card.id;
+                return c._id !== card._id;
             }))
         })
         .catch((error) => {
