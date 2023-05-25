@@ -1,7 +1,7 @@
 import React from "react";
 import PopupWithForm from "./PopupWithForm";
 
-function AddPlacePopup({isOpen, onClose, onAddPlace}) {
+function AddPlacePopup({isOpen, onClose, onAddPlace, buttonText}) {
 
 
     const textInputName = React.useRef();
@@ -22,34 +22,36 @@ function AddPlacePopup({isOpen, onClose, onAddPlace}) {
 
     return (
         <PopupWithForm
-        title = 'Новое место'
-        name = 'add'
-        buttonTitle = 'Отправить'
-        isOpen = {isOpen}
-        onClose = {onClose}
-        onSubmit={handleSubmit}>
+            title = 'Новое место'
+            name = 'add'
+            buttonText = {buttonText}
+            isOpen = {isOpen}
+            onClose = {onClose}
+            onSubmit={handleSubmit}
+        >
+
             <input 
-            ref={textInputName} 
-            type="text" 
-            className="form__field form__field_type_card-name" 
-            id="card-name-input" 
-            name="inputCardName" 
-            placeholder="Название" 
-            minLength="2" 
-            maxLength="30" 
-            required 
+                ref={textInputName} 
+                type="text" 
+                className="form__field form__field_type_card-name" 
+                id="card-name-input" 
+                name="inputCardName" 
+                placeholder="Название" 
+                minLength="2" 
+                maxLength="30" 
+                required 
             />
 
             <span className='form__field-error card-name-input-error'></span>
 
             <input 
-            ref={textInputLink} 
-            type="url" 
-            className="form__field form__field_type_link" 
-            id="link-input" 
-            name="inputLink" 
-            placeholder="Ссылка" 
-            required 
+                ref={textInputLink} 
+                type="url" 
+                className="form__field form__field_type_link" 
+                id="link-input" 
+                name="inputLink" 
+                placeholder="Ссылка" 
+                required 
             />
 
             <span className='form__field-error link-input-error'></span>
