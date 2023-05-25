@@ -5,7 +5,7 @@ import * as auth from '../utils/auth.js';
 import InfoTooltip from "./InfoTooltip";
 
 
-export default function Login({handleLogin, getEmail, isInfoToolTipPopupOpen, isSucceed, handleInfoToolTipClick, closeInfoToolTipPopup, handleNotSucceed}) {
+export default function Login({handleLogin, isInfoToolTipPopupOpen, isSucceed, handleInfoToolTipClick, closeInfoToolTipPopup, handleNotSucceed}) {
 
     const [formValue, setFormValue] = React.useState({
         email: '',
@@ -32,7 +32,6 @@ export default function Login({handleLogin, getEmail, isInfoToolTipPopupOpen, is
             if(data.token) {
               handleLogin();
               navigate("/", {replace: true})
-              getEmail();
             }
           })
           .catch((err) => {
@@ -44,7 +43,6 @@ export default function Login({handleLogin, getEmail, isInfoToolTipPopupOpen, is
     
 
     return(
-      <div>
         <PageWithForm
         name = 'login'
         title = 'Вход'
@@ -60,6 +58,5 @@ export default function Login({handleLogin, getEmail, isInfoToolTipPopupOpen, is
             onClose={closeInfoToolTipPopup}
             />
         </PageWithForm>
-        </div>
     )
 } 
