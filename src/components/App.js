@@ -24,7 +24,7 @@ function App() {
     const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
 
     const [selectedCard, setSelectedCard] = React.useState({name:'', link:''});
-    const [currentUser, setCurrentUser] = React.useState('');
+    const [currentUser, setCurrentUser] = React.useState({});
     const [cards, setCards] = React.useState([]);
 
     
@@ -61,10 +61,10 @@ function App() {
     const [email, setEmail] = React.useState('');
 
     React.useEffect (() => {
-        getEmail();
+        checkToken();
     }, [])
 
-    const getEmail = () => {
+    const checkToken = () => {
         if (localStorage.getItem('token')) {
             const token = localStorage.getItem('token');
             auth.getEmail(token).then(({data}) => {
@@ -198,7 +198,6 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
             <div>
-                {/* {loggedIn ? <div>LoggedIn</div> : <div>NotLoggedIn</div>} */}
                 <Header  loggedIn={loggedIn} email={email} onClick={handleSignOut}/>
                 <Routes>
                     <Route element={<ProtectedRoute loggedIn={loggedIn} />}>
@@ -215,7 +214,6 @@ function App() {
                     </Route>
                     <Route   path="/sign-in" element={<Login 
                         handleLogin={handleLogin}
-                        getEmail={getEmail}
                         isInfoToolTipPopupOpen={isInfoToolTipPopupOpen}
                         isSucceed={isSucceed}
                         handleInfoToolTipClick={handleInfoToolTipClick}
@@ -235,29 +233,26 @@ function App() {
 
 
                 <EditProfilePopup 
-                            isOpen={isEditProfilePopupOpen}
-                            onClose={closeAllPopups}
-                            onUpdateUser={handleUpdateUser}
-                            />
+                    isOpen={isEditProfilePopupOpen}
+                    onClose={closeAllPopups}
+                    onUpdateUser={handleUpdateUser}
+                />
             
-                            <EditAvatarPopup
-                            isOpen={isEditAvatarPopupOpen}
-                            onClose={closeAllPopups}
-                            onUpdateAvatar={handleUpdateAvatar}
-                            />
+                <EditAvatarPopup
+                    isOpen={isEditAvatarPopupOpen}
+                    onClose={closeAllPopups}
+                    onUpdateAvatar={handleUpdateAvatar}
+                />
             
-                            <AddPlacePopup
-                            isOpen={isAddPlacePopupOpen}
-                            onClose={closeAllPopups}
-                            onAddPlace={handleAddPlaceSubmit}
-                            />
+                <AddPlacePopup
+                    isOpen={isAddPlacePopupOpen}
+                    onClose={closeAllPopups}
+                    onAddPlace={handleAddPlaceSubmit}
+                />
             
-                            <ImagePopup 
-                            card = { selectedCard }
-                            onClose = {closeAllPopups}
-                            />
+                <ImagePopup card={selectedCard} onClose={closeAllPopups} />
 
-                            <Footer />
+                <Footer />
 
             </div>
     </CurrentUserContext.Provider>
