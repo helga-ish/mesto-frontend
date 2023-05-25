@@ -163,6 +163,7 @@ function App() {
     }
 
     function handleUpdateUser(object) {
+        setIsLoading(true);
         api.changeProfileUserInfo(object)
         .then((newUserData) => {
             setCurrentUser(newUserData)
@@ -170,10 +171,14 @@ function App() {
         })
         .catch((error) => {
             console.error(`Ошибка загрузки данных пользователя с сервера: ${error}`);
-        });
+        })
+        .finally(() => {
+            setIsLoading(false);
+        })
     }
 
     function handleUpdateAvatar(link) {
+        setIsLoading(true);
         api.editAvatar(link)
         .then((dataAvatar) => {
             setCurrentUser(dataAvatar);
@@ -181,10 +186,14 @@ function App() {
         })
         .catch((error) => {
             console.error(`Ошибка загрузки данных аватара пользователя с сервера: ${error}`);
-        });
+        })
+        .finally(() => {
+            setIsLoading(false);
+        })
     }
 
     function handleAddPlaceSubmit(object) {
+        setIsLoading(true);
         api.addCard(object)
         .then((newCard) => {
             setCards([newCard, ...cards]);
@@ -193,7 +202,16 @@ function App() {
         .catch((error) => {
             console.error(`Ошибка загрузки данных нового места с сервера: ${error}`);
         })
+        .finally(() => {
+            setIsLoading(false);
+        })
     }
+
+    //  loading
+
+    const [isLoading, setIsLoading] = React.useState(false);
+
+
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -238,18 +256,21 @@ function App() {
                     isOpen={isEditProfilePopupOpen}
                     onClose={closeAllPopups}
                     onUpdateUser={handleUpdateUser}
+                    buttonText={isLoading? 'Сохранение...' : 'Сохранить'}
                 />
             
                 <EditAvatarPopup
                     isOpen={isEditAvatarPopupOpen}
                     onClose={closeAllPopups}
                     onUpdateAvatar={handleUpdateAvatar}
+                    buttonText={isLoading? 'Сохранение...' : 'Сохранить'}
                 />
             
                 <AddPlacePopup
                     isOpen={isAddPlacePopupOpen}
                     onClose={closeAllPopups}
                     onAddPlace={handleAddPlaceSubmit}
+                    buttonText={isLoading? 'Сохранение...' : 'Отправить'}
                 />
             
                 <ImagePopup card={selectedCard} onClose={closeAllPopups} />
