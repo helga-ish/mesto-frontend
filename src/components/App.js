@@ -212,7 +212,8 @@ function App() {
                                                 />} 
                         />
                     </Route>
-                    <Route   path="/sign-in" element={<Login 
+                    <Route   path="/sign-in" element={
+                    <Login 
                         handleLogin={handleLogin}
                         isInfoToolTipPopupOpen={isInfoToolTipPopupOpen}
                         isSucceed={isSucceed}
@@ -220,7 +221,8 @@ function App() {
                         closeInfoToolTipPopup={closeInfoToolTipPopup}
                         handleNotSucceed={handleNotSucceed}
                         />} />
-                    <Route   path="/sign-up" element={<Register
+                    <Route   path="/sign-up" element={
+                    <Register
                         isInfoToolTipPopupOpen={isInfoToolTipPopupOpen}
                         isSucceed={isSucceed}
                         handleInfoToolTipClick={handleInfoToolTipClick}

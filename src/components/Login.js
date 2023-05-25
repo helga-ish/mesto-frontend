@@ -44,18 +44,17 @@ export default function Login({handleLogin, isInfoToolTipPopupOpen, isSucceed, h
 
     return(
         <PageWithForm
-        name = 'login'
-        title = 'Вход'
-        buttonTitle= 'Войти'
-        onSubmit={handleSubmit}
-        onChange={handleChange}
-        formValueEmail={formValue.email}
-        formValuePassword={formValue.password}
-        >
+          name = 'login'
+          title = 'Вход'
+          buttonTitle= 'Войти'
+          onSubmit={handleSubmit}
+          onChange={handleChange}
+          formValueEmail={formValue.email}
+          formValuePassword={formValue.password} >
             <InfoTooltip
-            isSucceed={isSucceed}
-            isOpen={isInfoToolTipPopupOpen}
-            onClose={closeInfoToolTipPopup}
+              isSucceed={isSucceed}
+              isOpen={isInfoToolTipPopupOpen}
+              onClose={closeInfoToolTipPopup}
             />
         </PageWithForm>
     )

@@ -5,7 +5,7 @@ function PopupWithForm({ title, name, children, buttonTitle, isOpen, onClose, on
     return(
         <section className= {className} id={`popup-${name}`}>
             <div className="popup__container">
-                <button className="popup__toggle" type="button" onClick={onClose}></button>
+                <button className="popup__toggle" type="button" onClick={onClose} />
                 <form className="form" name={`${name}Form`} onSubmit={ onSubmit }>
                     <h2 className="form__heading">{`${title}`}</h2>
                     <fieldset className="form__fields">

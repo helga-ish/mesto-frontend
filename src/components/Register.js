@@ -27,32 +27,33 @@ export default function Register({isInfoToolTipPopupOpen, isSucceed, handleInfoT
         e.preventDefault();
           auth.register(formValue.email, formValue.password)
                 .then((res) => {
-                  handleInfoToolTipClick();
                   handleSucceed();
                 })
                 .catch((err) => {
                   console.log(err);
                   handleNotSucceed();
-                  handleInfoToolTipClick();
+                })
+                .finally(() => {
+                  handleInfoToolTipClick()
                 })
       }
 
     return(
         <PageWithForm
-        name = 'register'
-        title = 'Регистрация'
-        buttonTitle= 'Зарегистрироваться'
-        onChange={handleChange}
-        onSubmit={handleSubmit}
-        formValueEmail={formValue.email}
-        formValuePassword={formValue.password}
-        >
+          name = 'register'
+          title = 'Регистрация'
+          buttonTitle= 'Зарегистрироваться'
+          onChange={handleChange}
+          onSubmit={handleSubmit}
+          formValueEmail={formValue.email}
+          formValuePassword={formValue.password} >
             <p className="register-to-login">Уже зарегистрированы? <Link className="register-to-login_type_link" to='/sign-in'>Войти</Link></p>
             <InfoTooltip
-            isSucceed={isSucceed}
-            isOpen={isInfoToolTipPopupOpen}
-            onClose={closeInfoToolTipPopup}
-            onCloseAndNavigate={onCloseAndNavigate}/>
+              isSucceed={isSucceed}
+              isOpen={isInfoToolTipPopupOpen}
+              onClose={closeInfoToolTipPopup}
+              onCloseAndNavigate={onCloseAndNavigate}
+            />
         </PageWithForm>
 
     )

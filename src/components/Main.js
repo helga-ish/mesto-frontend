@@ -27,12 +27,13 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick, onCardLike
                 <ul className="gallery__list">
                     {cards.map((item) => (
                         <Card
-                        key={ item._id }
-                        card={ item }
-                        onCardClick = {onCardClick}
-                        onCardLike = {onCardLike}
-                        currentUser = {currentUser}
-                        onDeleteClick = {onDeleteClick}/>
+                            key={ item._id }
+                            card={ item }
+                            onCardClick = {onCardClick}
+                            onCardLike = {onCardLike}
+                            currentUser = {currentUser}
+                            onDeleteClick = {onDeleteClick}
+                        />
                     ))}
                 </ul>
             </section>
