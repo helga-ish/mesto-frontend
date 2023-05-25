@@ -50,12 +50,15 @@ export default function Login({handleLogin, isInfoToolTipPopupOpen, isSucceed, h
           onSubmit={handleSubmit}
           onChange={handleChange}
           formValueEmail={formValue.email}
-          formValuePassword={formValue.password} >
+          formValuePassword={formValue.password}
+          >
+
             <InfoTooltip
               isSucceed={isSucceed}
               isOpen={isInfoToolTipPopupOpen}
               onClose={closeInfoToolTipPopup}
             />
+            
         </PageWithForm>
     )
 } 

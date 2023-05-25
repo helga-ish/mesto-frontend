@@ -1,4 +1,8 @@
+import usePopupClose from "../hooks/usePopupClose";
+
 function ImagePopup({card, onClose}) {
+
+    usePopupClose(card.link, onClose);
 
     return(
         <section className={`popup ${ card.link && 'popup_active'}`} id='popup-card'>
