@@ -1,10 +1,12 @@
 import React from "react";
 import success from '../images/sign-up-success.svg';
 import fail from '../images/sign-up-fail.svg'
+import usePopupClose from "../hooks/usePopupClose";
 
 export default function InfoTooltip({isSucceed, isOpen, onClose, onCloseAndNavigate}) {
 
     const className = `popup ${isOpen ? 'popup_active' : ''}`;
+    usePopupClose(isOpen, onClose);
 
     return(
         <section className={className} id="popup-signup">

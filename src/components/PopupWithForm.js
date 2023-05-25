@@ -1,6 +1,9 @@
-function PopupWithForm({ title, name, children, buttonTitle, isOpen, onClose, onSubmit }) {
+import usePopupClose from "../hooks/usePopupClose";
+
+function PopupWithForm({ title, name, children, buttonText, isOpen, onClose, onSubmit }) {
 
     const className = `popup ${isOpen ? 'popup_active' : ''}`;
+    usePopupClose(isOpen, onClose);
 
     return(
         <section className= {className} id={`popup-${name}`}>
@@ -11,7 +14,7 @@ function PopupWithForm({ title, name, children, buttonTitle, isOpen, onClose, on
                     <fieldset className="form__fields">
                         {children}
                     </fieldset>
-                    <button type="submit" className="form-button">{ buttonTitle }</button>
+                    <button type="submit" className="form-button">{ buttonText }</button>
                 </form>
             </div>
         </section>
